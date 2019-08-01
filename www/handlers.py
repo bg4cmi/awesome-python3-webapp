@@ -17,6 +17,6 @@ from  models import User, Comment, Blog, next_id
 async def index(request):
     users = await User.findAll()
     return {
-        '__template__':'test.heml',
+        '__template__':'test.html',
         'users':users
     }
