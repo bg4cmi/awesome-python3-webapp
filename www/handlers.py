@@ -13,6 +13,7 @@ from coroweb import get, post
 
 from  models import User, Comment, Blog, next_id
 
+
 @get('/')
 async def index(request):
     users = await User.findAll()
@@ -20,3 +21,4 @@ async def index(request):
         '__template__':'test.html',
         'users':users
     }
+

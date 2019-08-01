@@ -14,7 +14,7 @@ async def create_pool(loop,**kw):
     logging.info('create database connection pool...')
     global __pool
     __pool = await aiomysql.create_pool(
-        host = kw.get('host','locaohost'),
+        host = kw.get('host','localhost'),
         port = kw.get('port',3306),
         user= kw['user'],
         password= kw['password'],
@@ -26,12 +26,14 @@ async def create_pool(loop,**kw):
         loop=loop
     )
 
-async def select(sql,args,size=None):
-    log(sql,args)
+async def select(sql, args, size=None):
+    log(sql, args)
     global __pool
     async with __pool.get() as conn:
         async with conn.cursor(aiomysql.DictCursor) as cur:
+           
             await cur.execute(sql.replace('?','%s'),args or())
+            logging.info(sql)
             if size:
                 rs = await cur.fetchmany(size)
             else:
@@ -123,12 +125,12 @@ class ModelMetaclass(type):
             raise Exception('Primary key not found.')
         for k in mappings.keys():
             attrs.pop(k)
-        escaped_fields = list(map(lambda f: '` %s `' % f,fields))
+        escaped_fields = list(map(lambda f: '`%s`' % f, fields))
         attrs['__mappings__'] = mappings
         attrs['__table__'] = tableName
         attrs['__primary_key__'] = primaryKey
         attrs['__fields__'] = fields
-        attrs['__select__'] = 'select `%s` %s from `%s`' % (primaryKey,', '.join(escaped_fields),tableName)
+        attrs['__select__'] = 'select `%s`, %s from `%s`' % (primaryKey, ', '.join(escaped_fields), tableName)
         attrs['__insert__'] = 'insert into `%s` (%s, `%s`) values (%s)' % (tableName, ', '.join(escaped_fields), primaryKey, create_args_string(len(escaped_fields) + 1))
         attrs['__update__'] = 'update `%s` set %s where `%s`=?' % (tableName, ', '.join(map(lambda f: '`%s`=?' % (mappings.get(f).name or f), fields)), primaryKey)
         attrs['__delete__'] = 'delete from `%s` where `%s`=?' % (tableName, primaryKey)

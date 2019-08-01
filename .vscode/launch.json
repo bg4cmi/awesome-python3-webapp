@@ -10,6 +10,13 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Awesom/APP.py",
+            "type": "python",
+            "request": "launch",
+            "program": "/icloud_li/Personal/ArtyPy/awesome-python3-webapp/www/app.py",
+            "console": "integratedTerminal"
         }
     ]
 }

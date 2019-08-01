@@ -42,7 +42,7 @@ def get_required_kw_args(fn):
     args = []
     params = inspect.signature(fn).parameters
     for name, param in params.items():
-        if params.kind == inspect.Parameter.KEYWORD_ONLY and param.default == inspect.Parameter.empty:
+        if param.kind == inspect.Parameter.KEYWORD_ONLY and param.default == inspect.Parameter.empty:
             args.append(name)
     return tuple(args)
 
@@ -168,7 +168,7 @@ def add_routes(app, module_name):
             continue
         fn = getattr(mod,attr)
         if callable(fn):
-            method = getattr(fn, '__methond__', None)
+            method = getattr(fn, '__method__', None)
             path = getattr(fn, '__route__', None)
             if  method and path:
                 add_route(app, fn)
