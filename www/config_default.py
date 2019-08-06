@@ -9,14 +9,14 @@ __author__ = 'Arty Li'
 
 configs = {
     'debug': True,
-    'db':{
-        'host':'localhost',
-        'port':3306,
-        'user':'www',
-        'password':'awesomepassword1',
-        'db':'awesome'
+    'db': {
+        'host': 'localhost',
+        'port': 3306,
+        'user': 'www',
+        'password': 'awesomepassword1',
+        'db': 'awesome'
     },
     'session':{
-        'secret':'Awesome'
+        'secret': 'Awesome'
     }
 }

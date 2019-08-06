@@ -8,7 +8,7 @@ __author__ = 'Arty Li'
 
 
 configs = {
-    'db':{
-        'host':'localhost'
+    'db': {
+        'host': 'localhost'
     }
 }
