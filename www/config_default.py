@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 '''
-default Configuration
+Default configurations.
 '''
 
-__author__ = 'Arty Li'
-
+__author__ = 'Michael Liao'
 
 configs = {
     'debug': True,
     'db': {
-        'host': 'localhost',
+        'host': '127.0.0.1',
         'port': 3306,
         'user': 'www',
-        'password': 'awesomepassword1',
+        'password': 'www',
         'db': 'awesome'
     },
-    'session':{
+    'session': {
         'secret': 'Awesome'
     }
 }

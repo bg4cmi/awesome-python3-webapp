@@ -2,7 +2,7 @@
 <html class="uk-height-1-1">
 <head>
     <meta charset="utf-8" />
-    <title>登录-awesome</title>
+    <title>登录 - Awesome Python Webapp</title>
     <link rel="stylesheet" href="/static/css/uikit.min.css">
     <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
     <script src="/static/js/jquery.min.js"></script>
@@ -11,8 +11,9 @@
     <script src="/static/js/vue.min.js"></script>
     <script src="/static/js/awesome.js"></script>
     <script>
+
 $(function() {
-    var vmauth = new Vue({
+    var vmAuth = new Vue({
         el: '#vm',
         data: {
             email: '',
@@ -30,13 +31,14 @@ $(function() {
                     };
                 $form.postJSON('/api/authenticate', data, function(err, result) {
                     if (! err) {
-                        location.assign('/')
+                        location.assign('/');
                     }
                 });
             }
         }
     });
 });
+
     </script>
 </head>
 <body class="uk-height-1-1">
@@ -64,5 +66,4 @@ $(function() {
         </div>
     </div>
 </body>
-
 </html>

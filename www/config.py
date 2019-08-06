@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 '''
 Configuration
 '''
 
-__author__ = 'Arty Li'
-
+__author__ = 'Michael Liao'
 
 import config_default
 
@@ -13,12 +13,12 @@ class Dict(dict):
     '''
     Simple dict but support access as x.y style.
     '''
-    def __init__(self, names=(), values=(),**kw):
+    def __init__(self, names=(), values=(), **kw):
         super(Dict, self).__init__(**kw)
         for k, v in zip(names, values):
-            self[k] =  v
+            self[k] = v
 
-    def __getattr__(self,key):
+    def __getattr__(self, key):
         try:
             return self[key]
         except KeyError:
@@ -29,7 +29,7 @@ class Dict(dict):
 
 def merge(defaults, override):
     r = {}
-    for k, v in  defaults.items():
+    for k, v in defaults.items():
         if k in override:
             if isinstance(v, dict):
                 r[k] = merge(v, override[k])
@@ -41,8 +41,8 @@ def merge(defaults, override):
 
 def toDict(d):
     D = Dict()
-    for k, v  in d.items():
-        D[k] = toDict(v) if isinstance(v,dict) else v
+    for k, v in d.items():
+        D[k] = toDict(v) if isinstance(v, dict) else v
     return D
 
 configs = config_default.configs
